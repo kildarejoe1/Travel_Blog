@@ -4,14 +4,14 @@ import psycopg2
 class Database():
     @staticmethod
     def db_connect():
-        conn=psycopg2.connect(database="Travel_blog",user="postgres", password="passwd", host="127.0.0.1", port="5432")
+        conn=psycopg2.connect(database="Travel_blog",user="postgres", password="Donadea12", host="127.0.0.1", port="5432")
         print("Opened datbase successfully")
         return conn
 
     @staticmethod
-    def db_table_create(conn_obj):
+    def db_table_create(conn_obj,table_name):
         cur=conn_obj.cursor()
-        cur.execute('''CREATE TABLE COMPANY
+        cur.execute('''CREATE TABLE posts
         (ID INT PRIMARY KEY     NOT NULL,
         blog_id          INT     NOT NULL,
         content TEXT,
@@ -20,7 +20,7 @@ class Database():
         conn.commit()
         conn.close()
 
-    def insert(self,collections, data):
+    def insert(self,table_name, data):
         conn=Database.db_connect()
         with conn.cursor() as cursor:
             pass

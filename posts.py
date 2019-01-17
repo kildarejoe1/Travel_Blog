@@ -2,7 +2,7 @@ __author__="hmorrin"
 from database import Database
 
 class Post(object):
-    def __init__(self,blog_id,title,content,author,date,id):
+    def __init__(self,blog_id,title,content,author,id):
         self.title=title
         self.content=content
         self.author=author
@@ -10,11 +10,11 @@ class Post(object):
 
 
     def save_to_db(self):
-        Database.insert(collection="posts", data=self.json())
+        Database.insert(table_name="posts", data=self.json())
 
     @staticmethod
     def retrieve_from_db(id):
-        data= Database.find_one(collection="posts",query={"id":id})
+        data= Database.find_one(table_name="posts",query={"id":id})
 
     def json(self):
         return {
@@ -24,5 +24,3 @@ class Post(object):
             "title":self.title,
             "created_date":self.created_date
         }
-
-        
